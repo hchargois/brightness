@@ -67,6 +67,7 @@ func (a Acpi) SetBrightness(val float64) {
 	}
 
 	valToSet := int(val * float64(max))
+	log.Printf(`Setting %v to %v (max. %v)`, a.path, valToSet, max)
 
 	err = writeBrightness(a.path, valToSet)
 	if err != nil {
