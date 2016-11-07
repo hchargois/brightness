@@ -12,7 +12,7 @@ type Config struct {
 }
 
 func parseConfig() *Config {
-	tree, err := toml.LoadFile("brightness.conf")
+	tree, err := toml.LoadFile("/etc/brightness.conf")
 	if err != nil {
 		die("Error reading config file", false)
 	}
