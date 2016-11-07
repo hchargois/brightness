@@ -1,0 +1,39 @@
+# Minimum brightness value, when requesting for less than this value
+# the brightness will be set to this value instead
+min = 30
+
+# Each [[monitors]] block represents a monitor, with its associated
+# parameters. Parameters gamma, scale and driver are always required.
+# Additionnal parameters may be set (and may be required) depending on
+# the driver.
+[[monitors]]
+# gamma allows spreading the brightness values evenly on the brightness
+# scale from 0 to 100. For example, your screen's backlight may dim very
+# fast when going from 100 to 80, then slowly until 0. Adjusting the
+# gamma allows shift things so that 50 looks like half brightness to you.
+gamma = 1.0
+# scale allows to decrease the value of the brightness. For example,
+# setting this to 0.8 and asking for brightness 100 will actually
+# set this monitor to brightness 80, and brightness 50 will be 40.
+# Use this for monitors that are too bright at brightness 100.
+scale = 1.0
+# driver sets the driver to use for this monitor
+driver = "xrandr"
+# output is a required setting for the "xrandr" driver, it is the
+# name of the XRandR output.
+output = "DP1"
+
+[[monitors]]
+gamma = 1.0
+scale = 1.0
+driver = "xrandr"
+output = "HDMI2"
+
+[[monitors]]
+gamma = 1.0
+scale = 1.0
+driver = "acpi"
+# path is a required output for the "acpi" driver, it is the path
+# of the folder of the ACPI interface governing backlight.
+# It must start with "/sys/class/backlight/"
+path = "/sys/class/backlight/acpi_video0"
