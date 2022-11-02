@@ -16,10 +16,10 @@ type BrightnessVal struct {
 }
 
 type Monitor struct {
-	Driver string
-	Gamma  float64
-	Scale  float64
-	Opts   drivers.Options
+	Driver     string
+	Gamma      float64
+	Scale      float64
+	DriverOpts drivers.Options
 }
 
 func (m *Monitor) normalizeValue(val int) float64 {
@@ -27,7 +27,7 @@ func (m *Monitor) normalizeValue(val int) float64 {
 }
 
 func (m *Monitor) SetBrightness(b int) {
-	drv, err := drivers.New(m.Driver, &m.Opts)
+	drv, err := drivers.New(m.Driver, &m.DriverOpts)
 	if err != nil {
 		log.Printf(`Error with driver %v: %v`, m.Driver, err)
 		return

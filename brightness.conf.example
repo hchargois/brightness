@@ -21,13 +21,13 @@ scale = 1.0
 driver = "xrandr"
 # output is a required setting for the "xrandr" driver, it is the
 # name of the XRandR output.
-output = "DP1"
+driveropts.output = "DP1"
 
 [[monitors]]
 gamma = 1.0
 scale = 1.0
 driver = "xrandr"
-output = "HDMI2"
+driveropts.output = "HDMI2"
 
 [[monitors]]
 gamma = 1.0
@@ -36,4 +36,4 @@ driver = "acpi"
 # path is a required output for the "acpi" driver, it is the path
 # of the folder of the ACPI interface governing backlight.
 # It must start with "/sys/class/backlight/"
-path = "/sys/class/backlight/acpi_video0"
+driveropts.path = "/sys/class/backlight/acpi_video0"
