@@ -8,7 +8,7 @@ import (
 
 type Config struct {
 	Monitors []Monitor
-	Min int
+	Min      int
 }
 
 func parseConfig() *Config {
@@ -32,7 +32,7 @@ func parseConfig() *Config {
 		die("Error with monitors value in config file", false)
 	}
 
-	for i, mon := range(monitors) {
+	for i, mon := range monitors {
 		monMap := mon.ToMap()
 		driver, ok := monMap["driver"].(string)
 		if !ok {
@@ -57,9 +57,9 @@ func parseConfig() *Config {
 
 		m := Monitor{
 			Driver: driver,
-			Gamma: gamma,
-			Scale: scale,
-			Opts: monMap,
+			Gamma:  gamma,
+			Scale:  scale,
+			Opts:   monMap,
 		}
 
 		c.Monitors = append(c.Monitors, m)

@@ -2,12 +2,11 @@ package drivers
 
 import (
 	"fmt"
-	"strings"
-	"io/ioutil"
-	"path/filepath"
 	"log"
-	"strconv"
 	"os"
+	"path/filepath"
+	"strconv"
+	"strings"
 )
 
 type Acpi struct {
@@ -19,10 +18,10 @@ func NewAcpi(opts *Options) (Driver, error) {
 	path := (*opts)["path"]
 	pathStr, ok := path.(string)
 	if !ok {
-		return nil, fmt.Errorf(`Option "path" for ACPI driver should be a string`)
+		return nil, fmt.Errorf(`option "path" for ACPI driver should be a string`)
 	}
 	if !strings.HasPrefix(pathStr, "/sys/class/backlight/") {
-		return nil, fmt.Errorf(`Option "path" for ACPI driver should start with "/sys/class/backlight/"`)
+		return nil, fmt.Errorf(`option "path" for ACPI driver should start with "/sys/class/backlight/"`)
 	}
 	a.path = pathStr
 	return a, nil
@@ -30,7 +29,7 @@ func NewAcpi(opts *Options) (Driver, error) {
 
 func retrieveMaxBrightness(path string) (int, error) {
 	fp := filepath.Join(path, "max_brightness")
-	contents, err := ioutil.ReadFile(fp)
+	contents, err := os.ReadFile(fp)
 	if err != nil {
 		log.Printf(`Error while reading max brightness from %v: %v`, fp, err)
 		return 0, err
@@ -45,7 +44,7 @@ func retrieveMaxBrightness(path string) (int, error) {
 
 func writeBrightness(path string, b int) error {
 	fp := filepath.Join(path, "brightness")
-	f, err := os.OpenFile(fp, os.O_WRONLY | os.O_TRUNC, 0)
+	f, err := os.OpenFile(fp, os.O_WRONLY|os.O_TRUNC, 0)
 	if err != nil {
 		log.Printf(`Error while writing brightness to %v: %v`, fp, err)
 		return err

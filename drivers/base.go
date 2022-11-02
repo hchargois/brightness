@@ -19,7 +19,7 @@ func New(name string, opts *Options) (Driver, error) {
 	case "acpi":
 		d, err = NewAcpi(opts)
 	default:
-		return nil, fmt.Errorf(`No driver for type "%v"`, name)
+		return nil, fmt.Errorf(`no driver for type "%v"`, name)
 	}
 	if err != nil {
 		return nil, err

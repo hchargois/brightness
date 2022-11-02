@@ -1,9 +1,9 @@
 package main
 
 import (
-	"io/ioutil"
-	"strconv"
 	"log"
+	"os"
+	"strconv"
 	"strings"
 )
 
@@ -11,14 +11,14 @@ const saveFile = "/var/run/brightness"
 
 func SaveBrightness(b int) {
 	payload := []byte(strconv.Itoa(b) + "\n")
-	err := ioutil.WriteFile(saveFile, payload, 0644)
+	err := os.WriteFile(saveFile, payload, 0644)
 	if err != nil {
 		log.Printf("Cannot save brightness value to %s: %s", saveFile, err)
 	}
 }
 
 func LoadBrightness() int {
-	contents, err := ioutil.ReadFile(saveFile)
+	contents, err := os.ReadFile(saveFile)
 	if err != nil {
 		log.Printf("Cannot load brightness value from %s: %s", saveFile, err)
 		return 100

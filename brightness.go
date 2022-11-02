@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"log"
 	"math"
+	"strconv"
 	"sync"
 
 	"github.com/hchargois/brightness/drivers"
@@ -12,18 +12,18 @@ import (
 
 type BrightnessVal struct {
 	Relative bool
-	Value int
+	Value    int
 }
 
 type Monitor struct {
 	Driver string
-	Gamma float64
-	Scale float64
-	Opts drivers.Options
+	Gamma  float64
+	Scale  float64
+	Opts   drivers.Options
 }
 
 func (m *Monitor) normalizeValue(val int) float64 {
-	return math.Pow(float64(val) / 100, 1/m.Gamma) * m.Scale
+	return math.Pow(float64(val)/100, 1/m.Gamma) * m.Scale
 }
 
 func (m *Monitor) SetBrightness(b int) {
@@ -34,7 +34,6 @@ func (m *Monitor) SetBrightness(b int) {
 	}
 	norm := m.normalizeValue(b)
 	drv.SetBrightness(norm)
-	return
 }
 
 func parseValue(v string) BrightnessVal {
@@ -67,7 +66,7 @@ func setBrightness(valStr string, cfg *Config) {
 	}
 
 	var wg sync.WaitGroup
-	for _, mon := range(cfg.Monitors) {
+	for _, mon := range cfg.Monitors {
 		wg.Add(1)
 		go func(mon Monitor) {
 			mon.SetBrightness(absVal)

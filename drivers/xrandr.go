@@ -1,9 +1,9 @@
 package drivers
 
 import (
-	"os/exec"
 	"fmt"
 	"log"
+	"os/exec"
 	"strings"
 )
 
@@ -16,7 +16,7 @@ func NewXrandr(opts *Options) (Driver, error) {
 	output := (*opts)["output"]
 	outputStr, ok := output.(string)
 	if !ok {
-		return nil, fmt.Errorf(`Option "output" for XRandR driver should be a string`)
+		return nil, fmt.Errorf(`option "output" for XRandR driver should be a string`)
 	}
 	xr.output = outputStr
 	return xr, nil

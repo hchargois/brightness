@@ -9,10 +9,10 @@ import (
 func usage() {
 	progname := path.Base(os.Args[0])
 	fmt.Fprintf(os.Stderr, "Usage:\n"+
-	"  %v value\n" +
-	"\n"+
-	"value: The brightness value to set as a percentage, absolute (e.g. \"90\") or relative (e.g. \"+10\")\n",
-	progname)
+		"  %v value\n"+
+		"\n"+
+		"value: The brightness value to set as a percentage, absolute (e.g. \"90\") or relative (e.g. \"+10\")\n",
+		progname)
 }
 
 func die(msg string, withUsage bool) {
